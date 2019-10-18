@@ -48,7 +48,7 @@ export const constantRoutes = [
     redirect: '/dashboard',
     children: [{
       path: 'dashboard',
-      name: 'Dashboard',
+      name: 'dashboard',
       component: () => import('@/views/dashboard/index'),
       meta: { title: '静态页面', icon: 'ym' }
     }]
@@ -58,7 +58,7 @@ export const constantRoutes = [
     component: Layout,
     children: [{
       path: '',
-      name: 'Prototype',
+      name: 'prototype',
       component: () => import('@/views/prototype'),
       meta: { title: '产品原型', icon: 'prototype' }
     }]
@@ -68,7 +68,7 @@ export const constantRoutes = [
     component: Layout,
     children: [{
       path: '',
-      name: 'DBank',
+      name: 'dbank',
       component: () => import('@/views/dbank'),
       meta: { title: '网盘', icon: 'wp' }
     }]
@@ -78,7 +78,7 @@ export const constantRoutes = [
     component: Layout,
     children: [{
       path: '',
-      name: 'ShareLink',
+      name: 'shareLink',
       component: () => import('@/views/shareLink'),
       meta: { title: '分享链接', icon: 'shareLink' }
     }]
@@ -88,7 +88,7 @@ export const constantRoutes = [
     component: Layout,
     children: [{
       path: '',
-      name: 'Recycled',
+      name: 'recycled',
       component: () => import('@/views/recycled'),
       meta: { title: '回收站', icon: 'hsz' }
     }]

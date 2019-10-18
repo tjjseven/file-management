@@ -3,11 +3,19 @@
     <div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside" />
     <div class="t_nav">
       <div class="right-menu">
-        <div class="right-menu-item">
-          <ThemePicker/>
-        </div>
-        <div class="right-menu-item">
-          <el-dropdown class="avatar-container" trigger="click">
+        <!--<div class="right-menu-item">-->
+        <HeaderSearch class="right-menu-item"/>
+        <el-badge is-dot class="item right-menu-item">
+          <i class="el-icon-bell nav_icon" title="消息通知"></i>
+        </el-badge>
+        <i class="el-icon-question nav_icon right-menu-item" title="帮助中心"></i>
+        <i class="el-icon-edit-outline nav_icon right-menu-item" title="意见反馈"></i>
+        <!--</div>-->
+        <!--<div class="right-menu-item">-->
+          <ThemePicker class="right-menu-item"/>
+        <!--</div>-->
+        <!--<div class="right-menu-item">-->
+          <el-dropdown class="avatar-container right-menu-item" trigger="click">
             <div class="avatar-wrapper">
               <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
               <i class="el-icon-caret-bottom" />
@@ -26,7 +34,7 @@
               </el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
-        </div>
+        <!--</div>-->
 
       </div>
     </div>
@@ -42,6 +50,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import HeaderSearch from '@/components/HeaderSearch'
 import { Navbar, Sidebar, AppMain } from './components'
 import ResizeMixin from './mixin/ResizeHandler'
 import ThemePicker from '@/components/ThemePicker'
@@ -51,7 +60,8 @@ export default {
     Navbar,
     Sidebar,
     AppMain,
-    ThemePicker
+    ThemePicker,
+    HeaderSearch
   },
   mixins: [ResizeMixin],
   computed: {
@@ -149,19 +159,22 @@ export default {
   .right-menu {
     float: right;
     height: 100%;
-
+    display: flex;
+    align-items: center;
     &:focus {
       outline: none;
     }
-
+    .nav_icon{
+      font-size: 20px;
+      color: #fff;
+      cursor:pointer;
+    }
     .right-menu-item {
-      display: inline-block;
-      padding: 0 8px;
-      height: 100%;
-      font-size: 18px;
-      color: #5a5e66;
+      margin: 0 8px;
+      /*height: 100%;*/
+      /*font-size: 18px;*/
+      /*color: #5a5e66;*/
       /*vertical-align: text-bottom;*/
-
       &.hover-effect {
         cursor: pointer;
         transition: background .3s;
@@ -174,23 +187,24 @@ export default {
 
     .avatar-container {
       margin-right: 30px;
-
+      img{
+        float: left;
+      }
       .avatar-wrapper {
-        margin-top: 5px;
         position: relative;
 
         .user-avatar {
           cursor: pointer;
-          width: 40px;
-          height: 40px;
-          border-radius: 10px;
+          width: 30px;
+          height: 30px;
+          border-radius: 5px;
         }
 
         .el-icon-caret-bottom {
           cursor: pointer;
           position: absolute;
-          right: -20px;
-          top: 25px;
+          right: -17px;
+          top: 20px;
           font-size: 12px;
         }
       }

@@ -4,7 +4,7 @@
 
 <script>
     export default {
-        name: "recycled"
+        name: "dbank"
     }
 </script>
 

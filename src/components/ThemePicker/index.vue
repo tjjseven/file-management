@@ -170,10 +170,17 @@
   .theme-picker-dropdown {
     z-index: 99999 !important;
   }
+  .theme-picker-dropdown{
+    margin-top: 20px;
+  }
+  .theme-picker{
+    height: auto;
+  }
   .theme-picker .el-color-picker__trigger {
     height: 26px !important;
     width: 26px !important;
     padding: 2px;
+    float: left;
   }
   .theme-picker-dropdown .el-color-dropdown__link-btn {
     display: none;
