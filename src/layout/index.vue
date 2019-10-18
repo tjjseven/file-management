@@ -18,11 +18,8 @@
                   Home
                 </el-dropdown-item>
               </router-link>
-              <a target="_blank" href="https://github.com/PanJiaChen/vue-admin-template/">
+              <a target="_blank" href="">
                 <el-dropdown-item>Github</el-dropdown-item>
-              </a>
-              <a target="_blank" href="https://panjiachen.github.io/vue-element-admin-site/#/">
-                <el-dropdown-item>Docs</el-dropdown-item>
               </a>
               <el-dropdown-item divided>
                 <span style="display:block;" @click="logout">Log Out</span>
@@ -152,7 +149,6 @@ export default {
   .right-menu {
     float: right;
     height: 100%;
-    line-height: 50px;
 
     &:focus {
       outline: none;
