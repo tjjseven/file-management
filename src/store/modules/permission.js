@@ -50,9 +50,10 @@ const actions = {
   generateRoutes({ commit }, roles) {
     return new Promise(resolve => {
       let accessedRoutes
-      if (roles.includes('admin')) {
+      if (roles.includes('admin')) { // 指定admin用户 有搜索权限
         accessedRoutes = asyncRoutes || []
       } else {
+        // console.log(constantRoutes)
         accessedRoutes = filterAsyncRoutes(asyncRoutes, roles)
       }
       commit('SET_ROUTES', accessedRoutes)

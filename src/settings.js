@@ -14,4 +14,9 @@ module.exports = {
    */
   sidebarLogo: false,
 
+  tagsView: false,
+
+  showSettings: true,
+
+  theme: '#409EFF'
 }

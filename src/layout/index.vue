@@ -3,19 +3,14 @@
     <div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside" />
     <div class="t_nav">
       <div class="right-menu">
-        <!--<div class="right-menu-item">-->
         <HeaderSearch class="right-menu-item"/>
         <el-badge is-dot class="item right-menu-item">
           <i class="el-icon-bell nav_icon" title="消息通知"></i>
         </el-badge>
         <i class="el-icon-question nav_icon right-menu-item" title="帮助中心"></i>
         <i class="el-icon-edit-outline nav_icon right-menu-item" title="意见反馈"></i>
-        <!--</div>-->
-        <!--<div class="right-menu-item">-->
-          <ThemePicker class="right-menu-item"/>
-        <!--</div>-->
-        <!--<div class="right-menu-item">-->
-          <el-dropdown class="avatar-container right-menu-item" trigger="click">
+        <ThemePicker class="right-menu-item"/>
+        <el-dropdown class="avatar-container right-menu-item" trigger="click">
             <div class="avatar-wrapper">
               <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
               <i class="el-icon-caret-bottom" />
@@ -34,24 +29,29 @@
               </el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
-        <!--</div>-->
-
       </div>
     </div>
+
     <sidebar class="sidebar-container" />
-    <div class="main-container">
+
+    <div class="main-container" :class="{hasTagsView:needTagsView}">
       <div :class="{'fixed-header':fixedHeader}">
         <navbar />
+        <tags-view v-if="needTagsView" />
       </div>
+      <right-panel v-if="showSettings">
+        <settings />
+      </right-panel>
       <app-main />
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import RightPanel from '@/components/RightPanel'
+import { mapState, mapGetters } from 'vuex'
 import HeaderSearch from '@/components/HeaderSearch'
-import { Navbar, Sidebar, AppMain } from './components'
+import { Navbar, Sidebar, AppMain, TagsView, Settings } from './components'
 import ResizeMixin from './mixin/ResizeHandler'
 import ThemePicker from '@/components/ThemePicker'
 export default {
@@ -61,13 +61,20 @@ export default {
     Sidebar,
     AppMain,
     ThemePicker,
-    HeaderSearch
+    HeaderSearch,
+    TagsView,
+    Settings,
+    RightPanel
   },
   mixins: [ResizeMixin],
   computed: {
     ...mapGetters([
       'avatar'
     ]),
+    ...mapState({
+      needTagsView: state => state.settings.tagsView,
+      showSettings: state => state.settings.showSettings,
+    }),
     sidebar() {
       return this.$store.state.app.sidebar
     },
@@ -124,7 +131,7 @@ export default {
 
   .fixed-header {
     position: fixed;
-    top: 0;
+    top: 50px;
     right: 0;
     z-index: 9;
     width: calc(100% - #{$sideBarWidth});

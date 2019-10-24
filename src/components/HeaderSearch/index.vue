@@ -41,7 +41,7 @@
     },
     watch: {
       routes() {
-        this.searchPool = this.generateRoutes(this.routes)
+        // this.searchPool = this.generateRoutes(this.routes)
       },
       searchPool(list) {
         this.initFuse(list)
@@ -55,8 +55,9 @@
       }
     },
     mounted() {
+      this.$store.dispatch('permission/generateRoutes',['admin'])
       this.searchPool = this.generateRoutes(this.routes)
-      console.log(this)
+      // console.log(this)
       console.log(this.searchPool)
     },
     methods: {
@@ -100,6 +101,8 @@
       // Filter out the routes that can be displayed in the sidebar
       // And generate the internationalized title
       generateRoutes(routes, basePath = '/', prefixTitle = []) {
+        // console.log('路由')
+        // console.log(routes)
         let res = []
         for (const router of routes) {
           // skip hidden router
