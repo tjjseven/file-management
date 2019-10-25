@@ -1,0 +1,13 @@
+.theme_color{
+  color: #409EFF;
+}
+.theme_bg_color{
+  background: #409EFF;
+}
+.theme_border_color{
+  border-color: #409EFF;
+}
+.tags-view-item.active{
+  background-color: #409EFF !important;
+  border-color: #409EFF !important;
+}

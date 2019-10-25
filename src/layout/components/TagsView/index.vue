@@ -193,7 +193,7 @@
 
 <style lang="scss" scoped>
   .tags-view-container {
-    height: 34px;
+    height: 42px;
     width: 100%;
     background: #fff;
     border-bottom: 1px solid #d8dce5;
@@ -208,10 +208,11 @@
         border: 1px solid #d8dce5;
         color: #495060;
         background: #fff;
-        padding: 0 8px;
+        padding: 0 1px 0 6px;
+        border-radius: 3px;
         font-size: 12px;
         margin-left: 5px;
-        margin-top: 4px;
+        margin-top: 8px;
         &:first-of-type {
           margin-left: 15px;
         }
@@ -219,9 +220,7 @@
           margin-right: 15px;
         }
         &.active {
-          background-color: #42b983;
           color: #fff;
-          border-color: #42b983;
           &::before {
             content: '';
             background: #fff;

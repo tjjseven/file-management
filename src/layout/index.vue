@@ -2,6 +2,7 @@
   <div :class="classObj" class="app-wrapper">
     <div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside" />
     <div class="t_nav">
+      <logo v-if="showLogo" :collapse="isCollapse" />
       <div class="right-menu">
         <HeaderSearch class="right-menu-item"/>
         <el-badge is-dot class="item right-menu-item">
@@ -9,7 +10,7 @@
         </el-badge>
         <i class="el-icon-question nav_icon right-menu-item" title="帮助中心"></i>
         <i class="el-icon-edit-outline nav_icon right-menu-item" title="意见反馈"></i>
-        <ThemePicker class="right-menu-item"/>
+        <!--<ThemePicker class="right-menu-item"/>-->
         <el-dropdown class="avatar-container right-menu-item" trigger="click">
             <div class="avatar-wrapper">
               <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
@@ -34,7 +35,7 @@
 
     <sidebar class="sidebar-container" />
 
-    <div class="main-container" :class="{hasTagsView:needTagsView}">
+    <div class="main-container" :class="{'main-tags-view':needTagsView}">
       <div :class="{'fixed-header':fixedHeader}">
         <navbar />
         <tags-view v-if="needTagsView" />
@@ -48,6 +49,7 @@
 </template>
 
 <script>
+import Logo from './components/Sidebar/Logo'
 import RightPanel from '@/components/RightPanel'
 import { mapState, mapGetters } from 'vuex'
 import HeaderSearch from '@/components/HeaderSearch'
@@ -64,7 +66,8 @@ export default {
     HeaderSearch,
     TagsView,
     Settings,
-    RightPanel
+    RightPanel,
+    Logo
   },
   mixins: [ResizeMixin],
   computed: {
@@ -73,7 +76,7 @@ export default {
     ]),
     ...mapState({
       needTagsView: state => state.settings.tagsView,
-      showSettings: state => state.settings.showSettings,
+      showSettings: state => state.settings.showSettings
     }),
     sidebar() {
       return this.$store.state.app.sidebar
@@ -91,6 +94,12 @@ export default {
         withoutAnimation: this.sidebar.withoutAnimation,
         mobile: this.device === 'mobile'
       }
+    },
+    showLogo() {
+      return this.$store.state.settings.sidebarLogo
+    },
+    isCollapse() {
+      return !this.sidebar.opened
     }
   },
   methods: {
@@ -216,5 +225,8 @@ export default {
         }
       }
     }
+  }
+  .main-tags-view>.fixed-header+.app-main{
+    padding-top: 87px;
   }
 </style>

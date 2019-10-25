@@ -2,7 +2,7 @@
   <div ref="rightPanel" :class="{show:show}" class="rightPanel-container">
     <div class="rightPanel-background" />
     <div class="rightPanel">
-      <div class="handle-button" :style="{'top':buttonTop+'px'}" @click="show=!show"><!--,'background-color':theme-->
+      <div class="handle-button theme_bg_color" :style="{'top':buttonTop+'px'}" @click="show=!show">
         <i :class="show?'el-icon-close':'el-icon-setting'" />
       </div>
       <div class="rightPanel-items">
@@ -125,7 +125,7 @@
     left: -48px;
     text-align: center;
     font-size: 24px;
-    background: $menuActiveText;
+
     border-radius: 6px 0 0 6px !important;
     z-index: 0;
     pointer-events: auto;
